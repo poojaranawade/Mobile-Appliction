@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ImageFrame2"
+             x:Class="ImageFrame2.MainPage">
+
+    <ContentPage.Padding>
+      <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+  <ContentPage.Content>
+
+    <ScrollView>
+      <StackLayout Orientation="Vertical">
+
+        <!--1st child add button remove button-->
+        <Frame OutlineColor="Accent">
+          <StackLayout Orientation="Horizontal">
+            <Button x:Name="addButton"
+                      Text="ADD"
+                      FontSize="Large"
+                      IsEnabled="True"
+                      VerticalOptions="Center"
+                      Clicked="OnAddButtonClicked" />
+            <Button x:Name="removeButton"
+                      Text="REMOVE"
+                      FontSize="Large"
+                      IsEnabled="True"
+                      VerticalOptions="Center"
+                      Clicked="OnRemoveButtonClicked" />
+          </StackLayout>
+        </Frame>
+
+
+       <!--2nd child to enter url of new image-->
+        <Frame x:Name="hiddenChild" OutlineColor="Accent" IsVisible="False">
+          <StackLayout >
+            <Entry x:Name="entryUrl"
+                    Placeholder="URL"/>
+            <Entry x:Name="entryName"
+                    Placeholder="Name"/>
+            <Button x:Name="imageAdd"
+                    Text="ADD"
+                    Clicked="OnAddImageButtonClicked" />
+            <Button x:Name="cancel"
+                    Text="CANCEL"   
+                    Clicked="OnAddImageButtonClicked" />
+          </StackLayout>
+        </Frame>
+
+
+        <!--3rd child is an image frame-->
+        <Frame OutlineColor="Accent">
+          <StackLayout Orientation="Horizontal">
+            <Label x:Name="status"
+                     />
+            <Image x:Name="imageFrame"
+                     PropertyChanged="OnImagePropertyChanged"
+                     Source="https://static.pexels.com/photos/3247/nature-forest-industry-rails.jpg">
+            </Image>
+          </StackLayout>
+        </Frame>
+
+
+        <!--4th child shows the timer and switch-->
+        <Frame OutlineColor="Accent">
+          <StackLayout Orientation="Horizontal">
+            <Label x:Name="timer"
+                   Text="5"
+                   FontSize="Large"   
+                    WidthRequest ="200"
+                   HorizontalOptions="Start"/>
+            <Switch x:Name="switchButton"
+                    Toggled="OnSwitchToggled"
+                    VerticalOptions="Center"
+                    IsToggled="True"
+                    HorizontalOptions="End" />
+          </StackLayout>
+        </Frame>
+
+
+        <!--5th child shows text entry slider and stepper for new time interval-->
+        <Frame OutlineColor="Accent">
+          <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+              <Entry x:Name="entryTime"
+                     Placeholder="Time in seconds"
+                     Text="5"
+                     Keyboard="Numeric"
+                     TextChanged="ValidateInput"/>
+              <Stepper x:Name="stepper"
+                       Maximum="60"
+                       Minimum="0"
+                       ValueChanged="OnStepperValueChanged"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+            <Slider x:Name="slider"
+                    Maximum="60"
+                    Minimum="0"               
+                    ValueChanged="OnSliderValueChanged"
+                    VerticalOptions="CenterAndExpand" />
+          </StackLayout>
+        </Frame>
+
+        <!--6th child shows the list of existinng images-->
+        <Frame>
+        <ScrollView>
+          <StackLayout Orientation="Vertical" x:Name="stacklayout">
+                 <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="OnImageTapped"
+                                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>      
+            <StackLayout x:Name="list1"
+                           Orientation="Horizontal">
+               <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="OnImageTapped"
+                                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>
+              <Label HorizontalTextAlignment="End"
+                     VerticalTextAlignment="Center"
+                     TextColor="Black"
+                     Text="From Resource"/>
+            </StackLayout>
+            <StackLayout x:Name="list2"
+                          Orientation="Horizontal">
+               <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="OnImageTapped"
+                                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>
+              <Label HorizontalTextAlignment="End"
+                     VerticalTextAlignment="Center"
+                     TextColor="Black"
+                     Text="From File"/>
+            </StackLayout>
+            <StackLayout x:Name="list3"
+                          Orientation="Horizontal">
+               <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="OnImageTapped"
+                                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>
+              <Label HorizontalTextAlignment="End"
+                     VerticalTextAlignment="Center"
+                     TextColor="Black"
+                     Text="From Stream"/>
+            </StackLayout>
+            <StackLayout x:Name="list4"
+                          Orientation="Horizontal">
+               <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="OnImageTapped"
+                                    NumberOfTapsRequired="1" />
+            </StackLayout.GestureRecognizers>
+              <Label HorizontalTextAlignment="End"
+                     VerticalTextAlignment="Center"
+                     TextColor="Black"
+                     Text="From URL"/>
+            </StackLayout>
+           
+          </StackLayout>
+        </ScrollView>
+
+        </Frame>
+
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>
